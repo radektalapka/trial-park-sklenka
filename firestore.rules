@@ -1,0 +1,15 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Jezdci a check-iny jsou čitelné a zapisovatelné pro všechny
+    // (aplikace nemá přihlašování, PIN chrání akce)
+    match /riders/{id} {
+      allow read: if true;
+      allow write: if true;
+    }
+    match /checkins/{id} {
+      allow read: if true;
+      allow write: if true;
+    }
+  }
+}
